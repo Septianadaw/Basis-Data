@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2025 pada 07.12
+-- Waktu pembuatan: 30 Mar 2025 pada 19.35
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -90,7 +90,7 @@ CREATE TABLE `peminjaman` (
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_kembali`, `denda`) VALUES
 (1, 'SE01', 'BU01', '2025-03-10', '2025-03-15', 0),
 (2, 'SE02', 'BU03', '2025-03-15', '2025-03-21', 0),
-(3, 'SE03', 'BU05', '2025-03-22', '2025-03-24', 25000);
+(3, 'SE03', 'BU05', '2025-03-22', '2025-04-04', 12000);
 
 -- --------------------------------------------------------
 
