@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2025 pada 14.49
+-- Waktu pembuatan: 31 Mar 2025 pada 05.18
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -38,11 +38,11 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `jurusan_anggota`) VALUES
-('A001', 'Septiana', 'Informatika'),
+('A001', 'Septian', 'Informatika'),
 ('A002', 'Diyah', 'Akuntansi'),
 ('A003', 'Ayu', 'Informatika'),
-('T004', 'Wulandari', 'Manajemen'),
-('T005', 'Cahaya', 'Sistem Informasi');
+('A004', 'Wulandari', 'Manajemen'),
+('A005', 'Cahaya', 'Sistem Informasi');
 
 -- --------------------------------------------------------
 
@@ -73,10 +73,10 @@ INSERT INTO `buku` (`id_buku`, `judul_buku`, `id_penerbit`) VALUES
 --
 
 CREATE TABLE `peminjaman` (
-  `id_transaksi` char(4) NOT NULL,
-  `id_anggota` char(4) DEFAULT NULL,
-  `id_buku` char(4) DEFAULT NULL,
-  `tgl_pinjam` date NOT NULL,
+  `id_transaksi` char(10) NOT NULL,
+  `id_anggota` char(4) NOT NULL,
+  `id_buku` char(4) NOT NULL,
+  `tgl_pinjam` date DEFAULT NULL,
   `tgl_kembali` date DEFAULT NULL,
   `denda` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -87,10 +87,10 @@ CREATE TABLE `peminjaman` (
 
 INSERT INTO `peminjaman` (`id_transaksi`, `id_anggota`, `id_buku`, `tgl_pinjam`, `tgl_kembali`, `denda`) VALUES
 ('T001', 'A001', 'B001', '2025-03-01', '2025-03-08', 0),
-('T002', 'A002', 'B002', '2025-03-02', '2025-03-15', 10000),
+('T002', 'A002', 'B002', '2025-03-02', '2025-03-15', 6000),
 ('T003', 'A003', 'B003', '2025-03-05', '2025-03-15', 0),
-('T004', 'T004', 'B004', '2025-03-07', '2025-03-18', 2000),
-('T005', 'T005', 'B001', '2025-03-10', '2025-03-22', 4000);
+('T004', 'A004', 'B004', '2025-03-07', '2025-03-18', 2000),
+('T005', 'A005', 'B001', '2025-03-10', '2025-03-22', 4000);
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ INSERT INTO `peminjaman` (`id_transaksi`, `id_anggota`, `id_buku`, `tgl_pinjam`,
 
 CREATE TABLE `penerbit` (
   `id_penerbit` char(4) NOT NULL,
-  `nama_penerbit` varchar(50) DEFAULT NULL
+  `nama_penerbit` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -109,9 +109,9 @@ CREATE TABLE `penerbit` (
 
 INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`) VALUES
 ('P001', 'Gramedia'),
-('P002', 'Cemerlang'),
+('P002', 'CemerLang'),
 ('P003', 'Salemba'),
-('P004', 'Cemerlang');
+('P004', 'CemerLang');
 
 --
 -- Indexes for dumped tables
