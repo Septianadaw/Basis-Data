@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2025 pada 16.09
+-- Waktu pembuatan: 14 Jun 2025 pada 12.32
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -47,7 +47,7 @@ DELIMITER ;
 
 CREATE TABLE `barang` (
   `id_brg` char(3) NOT NULL,
-  `nama_brg` varchar(100) DEFAULT NULL,
+  `nama_brg` varchar(50) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,6 +56,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_brg`, `nama_brg`, `stok`) VALUES
+('A10', 'Mouse', 30),
 ('A11', 'Keyboard', 15),
 ('A12', 'DVD R-W', 10),
 ('A13', 'Modem', 6);
@@ -106,7 +107,7 @@ INSERT INTO `mahasiswa` (`npm`, `nama`, `alamat`, `id_kelurahan`, `jenis_kelamin
 (12346, 'Budi Sugandhi', 'Bekasi', 109, 'L', '085643433321', 2),
 (12347, 'Toha Sitohang', 'Medan', 103, 'L', '08998787876', 2),
 (12348, 'Megawati', 'Condong Catur', 107, 'P', '0839303058', 1),
-(12349, 'PRABOWO SUBIYANTO', 'JKT', 107, 'L', '08132089111', NULL),
+(12349, 'PRABOWO SUBIYANTO', 'JKT', 107, 'L', '08132089111', 1),
 (12780, 'Anis Baswedan', 'Jakarta', 234, 'L', '08989877663', NULL),
 (12786, 'GANJAR PRANOWO', 'JAWA TENGAH', 123, 'L', '087656356622', NULL);
 
@@ -121,6 +122,14 @@ CREATE TABLE `pembelian` (
   `id_brg` char(3) DEFAULT NULL,
   `jml_beli` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_pem`, `id_brg`, `jml_beli`) VALUES
+(1, 'A10', 5),
+(2, 'A10', 10);
 
 --
 -- Trigger `pembelian`
@@ -158,7 +167,18 @@ ALTER TABLE `mahasiswa`
 -- Indeks untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  ADD PRIMARY KEY (`id_pem`);
+  ADD PRIMARY KEY (`id_pem`),
+  ADD KEY `id_brg` (`id_brg`);
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `pembelian`
+--
+ALTER TABLE `pembelian`
+  ADD CONSTRAINT `pembelian_ibfk_1` FOREIGN KEY (`id_brg`) REFERENCES `barang` (`id_brg`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
